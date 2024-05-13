@@ -1,0 +1,33 @@
+name: Update File
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 0 * * *'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Fetch and write file content
+      run: |
+        curl -s "https://raw.githubusercontent.com/leon4rdo78/fragimport/main/list64" > mmdleechersubofmine
+
+    - name: Check for changes
+      id: changes
+      run: |
+            git diff --quiet && echo 'No changes' || echo '::set-output name=changed::true'   
+      
+    - name: Commit and Push
+      if: steps.changes.outputs.changed == 'true'   
+      run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          timestamp=$(date -u)
+          git commit -m "✅Updated on ${timestamp}"
+          git push
