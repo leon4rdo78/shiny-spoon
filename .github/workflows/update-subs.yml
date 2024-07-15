@@ -15,7 +15,7 @@ jobs:
 
     - name: Fetch and write file content
       run: |
-        curl -s "https://raw.githubusercontent.com/leon4rdo78/fragimport/main/list64" > mmdleechersubofmine
+        curl -s "https://raw.githubusercontent.com/leon4rdo78/fragimport/main/selector/merged_output64" > mmdleechersubofmine
 
     - name: Check for changes
       id: changes
