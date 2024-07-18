@@ -21,7 +21,7 @@ jobs:
 
     - name: Create base64 encoded file
       run: |
-        base64 -w 0 gitpaid > gitpaid64
+        base64 -w 0 paidsub > paidsub64
 
     - name: Check for changes
       id: changes
@@ -33,7 +33,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add gitpaid64
+        git add paidsub64
         timestamp=$(TZ='Asia/Tehran' date)
-        git commit -m "✅Updated gitpaid64 on ${timestamp}"
+        git commit -m "✅Updated paidsub64 on ${timestamp}"
         git push
